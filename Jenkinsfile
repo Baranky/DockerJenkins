@@ -1,13 +1,13 @@
 pipeline {
     agent any
-
     stages {
         stage('Build Maven') {
             steps {
                 checkout scmGit(
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[url: 'https://github.com/Baranky/DockerJenkins']]
-                )git initgi
+                )
+
             }
         }
         stage('Build docker image'){
@@ -23,6 +23,6 @@ pipeline {
                     docker.image("baran:${env.BUILD_NUMBER}").run("-d -p 8080:8080 --name demo-container")
                 }
             }
-        }
-    }
+          }
+ }
 }
