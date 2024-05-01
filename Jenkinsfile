@@ -13,29 +13,15 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-        stage('Stop and Remove Existing Container') {
-                             steps {
-                                 script {
-                                   // Varolan container'ı durdur ve sil
-                                            bat 'docker stop demo-container '
-                                            bat 'docker rm demo-container'
-                                        }
-                                   }
-                        }
+
         stage('Build docker image'){
             steps{
                 script{
-                    docker.build("baran:${env.BUILD_NUMBER}")
+                    docker.build("barank0/app:${env.BUILD_NUMBER}")
                 }
             }
         }
-        stage('Push image to Hub'){
-            steps{
-                script{
-                    docker.image("baran:${env.BUILD_NUMBER}").run("-d -p 8085:8085 --name demo-container")
-                }
-            }
-        }
+
     }
 
 }
