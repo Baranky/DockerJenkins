@@ -1,13 +1,13 @@
 pipeline {
     agent any
+
     stages {
         stage('Build Maven') {
             steps {
                 checkout scmGit(
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[url: 'https://github.com/Baranky/DockerJenkins']]
-                )
-                bat 'mvn clean install'
+                )git initgi
             }
         }
         stage('Build docker image'){
@@ -24,4 +24,5 @@ pipeline {
                 }
             }
         }
+    }
 }
