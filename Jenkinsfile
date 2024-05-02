@@ -37,7 +37,7 @@ pipeline {
         stage('Run Docker Container') {
                     steps {
                         script {
-                            docker.image("demo/app:${env.BUILD_NUMBER}").run("-d -p 4444:8080 --name demo-container")
+                            docker.image("demo/app:${env.BUILD_NUMBER}").run("-d -p 4444:8085 --name demo-container")
                         }
                     }
                 }
